@@ -6,11 +6,7 @@ from groq import Groq
 # Կայքի էջի կարգավորումները
 st.set_page_config(page_title="EcoDrop", page_icon="♻️", layout="centered")
 
-API_KEY = st.secrets["GROQ_API_KEY"]
-client = Groq(api_key=API_KEY)
-
-client = Groq(api_key=API_KEY)
-
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 # Հիշողության մեջ պահում ենք օգտատիրոջ միավորները (սկզբում 50 միավոր)
 if 'points' not in st.session_state:
     st.session_state.points = 50
@@ -111,7 +107,7 @@ with tab4:
                                 "content": user_question,
                             }
                         ],
-                        model="llama-3.3-70b-versatile",
+                        model="llama-3.1-8b-instant",
                     )
                     st.success(chat_completion.choices[0].message.content)
                 except Exception as e:
