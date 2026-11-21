@@ -106,7 +106,8 @@ with tab4:
                                 "content": user_question,
                             }
                         ],
-                        model="llama-3.1-8b-instant",
+                        model="qwen/qwen3.8-27b",
+
                     )
                     st.success(chat_completion.choices[0].message.content)
                 except Exception as e:
