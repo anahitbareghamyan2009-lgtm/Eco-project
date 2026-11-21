@@ -6,8 +6,9 @@ from groq import Groq
 # Կայքի էջի կարգավորումները
 st.set_page_config(page_title="EcoDrop", page_icon="♻️", layout="centered")
 
-# Վերցնում ենք API բանալին Streamlit Secrets-ից (անվտանգ տարբերակ)
 API_KEY = st.secrets["GROQ_API_KEY"]
+client = Groq(api_key=API_KEY)
+
 client = Groq(api_key=API_KEY)
 
 # Հիշողության մեջ պահում ենք օգտատիրոջ միավորները (սկզբում 50 միավոր)
@@ -110,10 +111,10 @@ with tab4:
                                 "content": user_question,
                             }
                         ],
-                        model="llama-3.3-70b-versatile",
+                        model="llama-3.1-8b-instant",
                     )
                     st.success(chat_completion.choices[0].message.content)
                 except Exception as e:
-                    st.error("Սխալ տեղի ունեցավ: Ստուգիր API բանալին:")
+                    st.error(f"Սխալ՝ {e}")
         else:
             st.warning("Խնդրում ենք նախ գրել հարցը:")
