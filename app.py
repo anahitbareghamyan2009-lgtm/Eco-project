@@ -5,7 +5,6 @@ from groq import Groq
 
 # Կայքի էջի կարգավորումները
 st.set_page_config(page_title="EcoDrop", page_icon="♻️", layout="centered")
-
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 # Հիշողության մեջ պահում ենք օգտատիրոջ միավորները (սկզբում 50 միավոր)
 if 'points' not in st.session_state:
