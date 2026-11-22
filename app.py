@@ -19,12 +19,12 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # 2. Միացում Groq AI-ին և Google Sheets-ին
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
-@st.cache_resource
 def init_gsheet():
     credentials = dict(st.secrets["gcp_service_account"])
     gc = gspread.service_account_from_dict(credentials)
-    sh = gc.open("EcoDrop_Users")
+    sh = gc.open_by_url("ԱՅՍՏԵՂ_ՏԵՂԱԴՐԵՔ_ՁԵՐ_GOOGLE_SHEET_ԱՂՅՈՒՍԱԿԻ_ՀՂՈՒՄԸ")
     return sh.sheet1
+
 
 sheet = init_gsheet()
 
