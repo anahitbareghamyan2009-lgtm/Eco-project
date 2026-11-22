@@ -6,6 +6,7 @@ from groq import Groq
 # Կայքի էջի կարգավորումները
 st.set_page_config(page_title="EcoDrop", page_icon="♻️", layout="centered")
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+
 # Հիշողության մեջ պահում ենք օգտատիրոջ միավորները (սկզբում 50 միավոր)
 if 'points' not in st.session_state:
     st.session_state.points = 50
@@ -14,7 +15,7 @@ if 'points' not in st.session_state:
 st.title("♻️ EcoDrop")
 st.write("Հանձնի՛ր պլաստիկ շշերը, սկանավորի՛ր և ստացի՛ր իրական մրցանակներ։")
 
-# Մենյու (Ավելացրել ենք 4-րդ բաժինը՝ AI Օգնական)
+# Մենյու (4 բաժին)
 tab1, tab2, tab3, tab4 = st.tabs([
     "📷 Սկանավորել շիշը", 
     "📍 Աղբամանների քարտեզ", 
@@ -84,7 +85,7 @@ with tab3:
             else:
                 st.error(f"Պակասում է ևս {150 - st.session_state.points} միավոր։")
 
-# --- ԲԱԺԻՆ 4. AI ԷԿՈ-ՕԳՆԱԿԱՆ (ՆՈՐՈՒԹՅՈՒՆ) ---
+# --- ԲԱԺԻՆ 4. AI ԷԿՈ-ՕԳՆԱԿԱՆ ---
 with tab4:
     st.subheader("Հարցրու EcoDrop AI-ին 🌿")
     st.write("Հարցրու ամեն ինչ վերամշակման, պլաստիկի տեսակների կամ մեր հավելվածի մասին։")
@@ -99,15 +100,15 @@ with tab4:
                         messages=[
                             {
                                 "role": "system",
-                                "content": "Դու EcoDrop էկո-հավելվածի օգնականն ես: Պատասխանիր կարճ, ընկերական և գրագետ հայերենով:"
+                                "content": "Դու EcoDrop էկո-հավելվածի օգնականն ես: Պատասխանիր կարճ, ընկերական և բացառապես գրագետ, մաքուր հայերենով՝ առանց տառասխալների:"
                             },
                             {
                                 "role": "user",
                                 "content": user_question,
                             }
                         ],
-                        model="qwen/qwen3.8-27b",
-
+                        model="openai/gpt-oss-120b",
+                        temperature=0.3,
                     )
                     st.success(chat_completion.choices[0].message.content)
                 except Exception as e:
