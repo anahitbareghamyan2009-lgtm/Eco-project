@@ -22,7 +22,7 @@ client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 def init_gsheet():
     credentials = dict(st.secrets["gcp_service_account"])
     gc = gspread.service_account_from_dict(credentials)
-    sh = gc.open_by_url("ԱՅՍՏԵՂ_ՏԵՂԱԴՐԵՔ_ՁԵՐ_GOOGLE_SHEET_ԱՂՅՈՒՍԱԿԻ_ՀՂՈՒՄԸ")
+    sh = gc.open_by_url("https://docs.google.com/spreadsheets/d/1v-1U3z644Lo_n1FQFxtVY7Xg-VsSPqN3GfBbbinogEo/edit?usp=sharing")
     return sh.sheet1
 
 
