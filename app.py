@@ -5,6 +5,15 @@ from groq import Groq
 
 # Կայքի էջի կարգավորումները
 st.set_page_config(page_title="EcoDrop", page_icon="♻️", layout="centered")
+hide_streamlit_style = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 client = Groq(api_key=st.secrets["GROQ_API_KEY"])
 
 # Հիշողության մեջ պահում ենք օգտատիրոջ միավորները (սկզբում 50 միավոր)
